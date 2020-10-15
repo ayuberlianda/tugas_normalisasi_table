@@ -1,0 +1,123 @@
+USE indomaret;
+
+CREATE TABLE tbl_data_indo(
+id_indo INT PRIMARY KEY AUTO_INCREMENT,
+nama_indo VARCHAR(100),
+alamat_indo VARCHAR(100),
+no_telp VARCHAR(15) UNIQUE,
+email VARCHAR(100)UNIQUE,
+ket VARCHAR(100),
+STATUS SET ("Aktif", "Non Aktif")
+);
+
+SHOW COLUMNS FROM tbl_data_indo;
+
+CREATE TABLE tbl_supplier(
+id_supplier INT PRIMARY KEY AUTO_INCREMENT,
+alamat VARCHAR(100),
+no_telp VARCHAR(15)UNIQUE,
+nama_gudang ENUM("Gudang 1","Gudang 2","Gudang 3","Gudang 4","Gudang 5"),
+ket VARCHAR(100),
+STATUS SET ("Aktif", "Non Aktif")
+);
+
+SHOW COLUMNS FROM tbl_supplier;
+
+CREATE TABLE tbl_karyawan(
+id_karyawan INT PRIMARY KEY AUTO_INCREMENT,
+nik VARCHAR(16) UNIQUE,
+nama_karyawan VARCHAR(50),
+jenis_kelamin ENUM("Laki-laki","Wanita"),
+jabatan ENUM("Branch Manager","Manager","Assistant Manager","Junior Manager","Junior Staff","Akuntansi","Junior Supervisor","Asissten Kepala toko","Kasir","Kasir"),
+alamat VARCHAR(100),
+no_telp VARCHAR(15)UNIQUE,
+email VARCHAR(30)UNIQUE,
+username VARCHAR(10)UNIQUE,
+PASSWORD VARCHAR(15)UNIQUE,
+ttl VARCHAR(50),
+pendidikan_terakhir ENUM("SMP","SMA","SMK","D1","D2","D3","D4","S1","S2","S3"),
+no_rek VARCHAR(15)UNIQUE,
+ket VARCHAR(100),
+STATUS SET ("Aktif", "Non Aktif")
+);
+
+SHOW COLUMNS FROM tbl_karyawan;
+
+CREATE TABLE tbl_jabatan(
+id_jabatan INT PRIMARY KEY AUTO_INCREMENT,
+jabatan ENUM("Branch Manager","Manager","Assistant Manager","Junior Manager","Junior Staff","Akuntansi","Junior Supervisor","Asissten Kepala toko","Kasir","Kasir"),
+lama_bekerja ENUM("0-2 Tahun","2-4 Tahun","4-6 Tahun","6-8 Tahun","8 Tahun Lebih"),
+ket VARCHAR(100),
+STATUS SET ("Aktif", "Non Aktif")
+);
+
+SHOW COLUMNS FROM tbl_jabatan;
+
+CREATE TABLE tbl_barang(
+id_barang INT PRIMARY KEY AUTO_INCREMENT,
+nama_barang VARCHAR(100),
+jumlah_barang TINYINT,
+nama_rak VARCHAR(20)UNIQUE,
+nama_gudang ENUM("Gudang 1","Gudang 2","Gudang 3","Gudang 4","Gudang 5"),
+nama_indo VARCHAR(100),
+ket VARCHAR(100),
+STATUS SET ("Ada", "Habis")
+);
+
+SHOW COLUMNS FROM tbl_barang;
+DESCRIBE tbl_barang;
+
+CREATE TABLE tbl_konsumen(
+id_konsumen INT PRIMARY KEY AUTO_INCREMENT,
+nama_konsumen VARCHAR(50),
+jenis_kelamin ENUM("Laki-laki","Wanita"),
+alamat_konsumen VARCHAR(100),
+no_telp_konsumen VARCHAR(15)UNIQUE,
+nama_indo VARCHAR(100),
+alamat_indo VARCHAR(100),
+poin VARCHAR(10),
+ket VARCHAR(100),
+STATUS SET ("Aktif", "Non Aktif")
+);
+
+SHOW COLUMNS FROM tbl_konsumen;
+
+CREATE TABLE tbl_bank(
+id_bank INT PRIMARY KEY AUTO_INCREMENT,
+nama_bank VARCHAR(30) UNIQUE,
+ket VARCHAR(100),
+STATUS SET ("Aktif", "Non Aktif")
+);
+
+SHOW COLUMNS FROM tbl_bank;
+
+CREATE TABLE tbl_tanggal(
+id_tanggal INT PRIMARY KEY AUTO_INCREMENT,
+tanggal DATETIME,
+tahun YEAR(4),
+ket VARCHAR(100)
+);
+
+SHOW COLUMNS FROM tbl_tanggal;
+
+CREATE TABLE tbl_tgl_transaksi(
+id_tanggal INT PRIMARY KEY,
+tanggal_transaksi TIMESTAMP,
+ket VARCHAR(100),
+STATUS SET ("Berhasil","Gagal")
+);
+
+SHOW COLUMNS FROM tbl_tgl_transaksi;
+
+CREATE TABLE tbl_harga (
+id_barang INT PRIMARY KEY, 
+id_harga INT, 
+nama_barang VARCHAR(100), 
+jumlah FLOAT(7,2), 
+ppn FLOAT(6,2),
+jumlah_total FLOAT(8,2), 
+ket VARCHAR(100),
+STATUS SET ("Transaksi Berhasil","Transaksi Gagal")
+);
+
+SHOW COLUMNS FROM tbl_harga;
